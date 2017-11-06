@@ -143,13 +143,13 @@ trajectory_control( const double dT,
         end_time         = max_run_time;
       
       
-      std::cout << "Time: " << dT << ".\n";
-      std::cout << "x: " << desired_p[0] << "\n";
-      std::cout << "y: " << desired_p[1] << "\n";
-      std::cout << "z: " << desired_p[2] << "\n";
-      std::cout << "pos_x: " << hover_p[0] << "\n";
-      std::cout << "pos_y: " << hover_p[1] << "\n";
-      std::cout << "pos_z: " << hover_p[2] << "\n";
+      //std::cout << "Time: " << dT << ".\n";
+      //std::cout << "x: " << desired_p[0] << "\n";
+      //std::cout << "y: " << desired_p[1] << "\n";
+      //std::cout << "z: " << desired_p[2] << "\n";
+      //std::cout << "pos_x: " << hover_p[0] << "\n";
+      //std::cout << "pos_y: " << hover_p[1] << "\n";
+      //std::cout << "pos_z: " << hover_p[2] << "\n";
       
       
         return true; // if you have got desired states, true.
