@@ -96,19 +96,20 @@ trajectory_control( const double dT,
                                   0.9000,-0.0189, 0.0020,-0.0048,-0.0013, 0.0002, 0.0000, 0.0000, \
                                   0.7000,-0.1274,-0.0063, 0.0117, 0.0016,-0.0007,-0.0002, 0.0000, };
   
-    //int i;  The segment where dT is 0~7
+    int w=0;  //The segment where dT is 0~7
     for (int i = 0; i < W; i++) 
     {
       if (dT >= T[i] && dT < T[i+1]) 
       {
+        w=i;
         break;
       }
     }
     for (int j = 0; j < R; j++)
     {
-      desired_p[0] = desired_p[0] + P_x[j+i*R]*pow((dT- T[i]), j);
-      desired_p[1] = desired_p[1] + P_y[j+i*R]*pow((dT- T[i]), j);
-      desired_p[2] = desired_p[2] + P_z[j+i*R]*pow((dT- T[i]), j);
+      desired_p[0] = desired_p[0] + P_x[j+w*R]*pow((dT- T[w]), j);
+      desired_p[1] = desired_p[1] + P_y[j+w*R]*pow((dT- T[w]), j);
+      desired_p[2] = desired_p[2] + P_z[j+w*R]*pow((dT- T[w]), j);
       if (j==0)
       {
         desired_v[0] = 0;
@@ -117,9 +118,9 @@ trajectory_control( const double dT,
       }
       if (j>0)
       {
-        desired_v[0] = desired_v[0] + j*P_x[j+i*R]*pow((dT- T[i]), (j-1));
-        desired_v[1] = desired_v[1] + j*P_y[j+i*R]*pow((dT- T[i]), (j-1));
-        desired_v[2] = desired_v[2] + j*P_z[j+i*R]*pow((dT- T[i]), (j-1));
+        desired_v[0] = desired_v[0] + j*P_x[j+w*R]*pow((dT- T[w]), (j-1));
+        desired_v[1] = desired_v[1] + j*P_y[j+w*R]*pow((dT- T[w]), (j-1));
+        desired_v[2] = desired_v[2] + j*P_z[j+w*R]*pow((dT- T[w]), (j-1));
       }
       desired_a[0] = 0;
       desired_a[1] = 0;
