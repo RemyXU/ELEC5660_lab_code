@@ -107,8 +107,8 @@ trajectory_control( const double dT,
     }
     for (int j = 0; j < R; j++)
     {
-      desired_p[0] = desired_p[0] + P_x[j+w*R]*pow((dT- T[w]), j);
-      desired_p[1] = desired_p[1] + P_y[j+w*R]*pow((dT- T[w]), j);
+      desired_p[0] = desired_p[0] + P_y[j+w*R]*pow((dT- T[w]), j);
+      desired_p[1] = desired_p[1] + P_x[j+w*R]*pow((dT- T[w]), j);
       desired_p[2] = desired_p[2] + P_z[j+w*R]*pow((dT- T[w]), j);
       if (j==0)
       {
@@ -118,8 +118,8 @@ trajectory_control( const double dT,
       }
       if (j>0)
       {
-        desired_v[0] = desired_v[0] + j*P_x[j+w*R]*pow((dT- T[w]), (j-1));
-        desired_v[1] = desired_v[1] + j*P_y[j+w*R]*pow((dT- T[w]), (j-1));
+        desired_v[0] = desired_v[0] + j*P_y[j+w*R]*pow((dT- T[w]), (j-1));
+        desired_v[1] = desired_v[1] + j*P_x[j+w*R]*pow((dT- T[w]), (j-1));
         desired_v[2] = desired_v[2] + j*P_z[j+w*R]*pow((dT- T[w]), (j-1));
       }
       desired_a[0] = 0;
@@ -132,14 +132,14 @@ trajectory_control( const double dT,
     if ( dT < max_run_time )
     {
         // output trajectory
-        desired_pos.x( ) = desired_p[1];
-        desired_pos.y( ) = desired_p[0];
+        desired_pos.x( ) = desired_p[0];
+        desired_pos.y( ) = desired_p[1];
         desired_pos.z( ) = desired_p[2];
-        desired_vel.x( ) = desired_v[1];
-        desired_vel.y( ) = desired_v[0];
+        desired_vel.x( ) = desired_v[0];
+        desired_vel.y( ) = desired_v[1];
         desired_vel.z( ) = desired_v[2];
-        desired_acc.x( ) = desired_a[1];
-        desired_acc.y( ) = desired_a[0];
+        desired_acc.x( ) = desired_a[0];
+        desired_acc.y( ) = desired_a[1];
         desired_acc.z( ) = desired_a[2];
         end_time         = max_run_time;
       
@@ -158,8 +158,8 @@ trajectory_control( const double dT,
     else
     {
         // output end point trajectory
-        desired_pos.x( ) = end_position[1];
-        desired_pos.y( ) = end_position[0];
+        desired_pos.x( ) = end_position[0];
+        desired_pos.y( ) = end_position[1];
         desired_pos.z( ) = end_position[2];
         desired_vel.x( ) = 0.0;
         desired_vel.y( ) = 0.0;
