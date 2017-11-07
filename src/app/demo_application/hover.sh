@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source /home/nvidia/ELEC5660_lab_code/src/app/demo_application/bashrc.sh;
-roslaunch trajectory_node trajectory_node & sleep 1;
+rosrun trajectory_node trajectory_node & sleep 1;
 roslaunch mocap_optitrack mocap.launch & sleep 1;
 #rosrun trajectory_generator toOdom
 rosrun pos_vel_mocap pos_vel_mocap & sleep 1;
